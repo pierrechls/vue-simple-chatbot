@@ -2,40 +2,10 @@
   "name": "vue-simple-chatbot",
   "version": "1.0.0",
   "description": "A simple chatbot VueJS component to create conversation chats",
-  "main": "src/main.js",
-  "scripts": {
-    "dev": "webpack-dev-server --inline --hot --quiet",
-    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
-    "lint": "eslint --ext .js,.vue src"
-  },
+  "main": "src/index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pierrechls/vue-simple-chatbot"
-  },
-  "devDependencies": {
-    "babel-core": "^6.0.0",
-    "babel-loader": "^6.0.0",
-    "babel-plugin-transform-runtime": "^6.0.0",
-    "babel-preset-es2015": "^6.0.0",
-    "babel-preset-stage-2": "^6.0.0",
-    "cross-env": "^1.0.6",
-    "css-loader": "^0.23.0",
-    "eslint": "^3.14.1",
-    "eslint-config-standard": "^6.2.1",
-    "eslint-friendly-formatter": "^2.0.5",
-    "eslint-plugin-html": "^1.5.2",
-    "eslint-plugin-import": "^2.2.0",
-    "eslint-plugin-promise": "^3.4.0",
-    "eslint-plugin-standard": "^2.0.1",
-    "node-sass": "^3.10.0",
-    "sass-loader": "^4.0.2",
-    "vue": "^1.0.0",
-    "vue-hot-reload-api": "^1.2.0",
-    "vue-html-loader": "^1.0.0",
-    "vue-loader": "^8.2.1",
-    "vue-style-loader": "^1.0.0",
-    "webpack": "^1.12.2",
-    "webpack-dev-server": "^1.12.0"
+    "url": "https://github.com/pierrechls/vue-simple-chatbot"
   },
   "keywords": [
     "vue",
@@ -44,13 +14,38 @@
     "chatbot",
     "conversational-ui"
   ],
-  "author": "contact@pierre-charles.com",
+  "author": {
+    "name": "Pierre Charles",
+    "email": "contact@pierre-charles.com",
+    "url": "https://github.com/pierrechls/"
+  },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/pierrechls/vue-simple-chatbot/issues"
+    "url": "https://github.com/pierrechls/vue-simple-chatbotissues"
   },
-  "homepage": "https://github.com/pierrechls/vue-simple-chatbot/blob/master/README.md",
+  "homepage": "https://github.com/pierrechls/vue-simple-chatbot#readme",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
+    "prepublish": "npm run build"
+  },
   "dependencies": {
-    "extract-text-webpack-plugin": "^3.0.2"
+    "vue": "^2.2.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.0.0",
+    "babel-loader": "^6.0.0",
+    "babel-preset-latest": "^6.0.0",
+    "cross-env": "^3.0.0",
+    "css-loader": "^0.25.0",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "node-sass": "^3.10.0",
+    "sass-loader": "^4.0.2",
+    "file-loader": "^0.9.0",
+    "url-loader": "^0.5.8",
+    "vue-loader": "^11.1.4",
+    "vue-template-compiler": "^2.2.1",
+    "webpack": "^2.2.0",
+    "webpack-dev-server": "^2.2.0"
   }
 }
