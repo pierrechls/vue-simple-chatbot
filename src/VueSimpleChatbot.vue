@@ -1,28 +1,32 @@
 <template>
   <div class="simple-chatbot-container">
     <!-- Here the simple chatbot container -->
+    <p>coucou</p>
   </div>
 </template>
 
 <script>
 
-  export default {
-    props: {},
-    data () {
-      return {}
-    },
-    computed: {},
-    methods: {},
-    watch: {},
-    created () {}
-  }
+    export default {
+        components: {},
+        props: {},
+        data(){
+            return {}
+        },
+        methods: {},
+        created(){}
+    }
 
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 
   body {
     background: red !important;
+
+    .simple-chatbot-container {
+      background: red !important;
+    }
 
     h1 {
       color: green;
