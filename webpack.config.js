@@ -1,35 +1,34 @@
-var path = require('path')
+var path    = require('path')
+var utils   = require('./utils')
 var webpack = require('webpack')
-var utils = require('./utils')
 
 module.exports = {
-  entry: './src/main.js',
+  entry: './demo/main.js',
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
-    filename: 'vue-simple-chatbot.min.js',
-    library: 'VueSimpleChatbot',
-    libraryTarget: 'umd',
-    umdNamedDefine: true
-  },
-  vue: {
-    loaders: utils.cssLoaders()
+    filename: 'build.js'
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.vue$/,
-        loader: 'vue'
+        loader: 'vue-loader',
+        options: {
+          loaders: utils.cssLoaders()
+        }
       },
       {
         test: /\.js$/,
-        loader: 'babel',
+        loader: 'babel-loader',
         exclude: /node_modules/
       },
       {
-        test: /\.(js|jsx)$/,
-        exclude: [/node_modules/],
-        loader: 'babel'
+        test: /\.(png|jpg|gif|svg)$/,
+        loader: 'url-loader',
+        options: {
+          name: '[name].[ext]?[hash]'
+        }
       },
       {
         test: /\.scss$/,
@@ -38,11 +37,24 @@ module.exports = {
       }
     ]
   },
+  resolve: {
+    alias: {
+      'vue$': 'vue/dist/vue.esm.js'
+    }
+  },
+  devServer: {
+    historyApiFallback: true,
+    noInfo: true
+  },
+  performance: {
+    hints: false
+  },
   devtool: '#eval-source-map'
 }
 
 if (process.env.NODE_ENV === 'production') {
-  module.exports.devtool = false
+  module.exports.devtool = '#source-map'
+  // http://vue-loader.vuejs.org/en/workflow/production.html
   module.exports.plugins = (module.exports.plugins || []).concat([
     new webpack.DefinePlugin({
       'process.env': {
@@ -50,11 +62,13 @@ if (process.env.NODE_ENV === 'production') {
       }
     }),
     new webpack.optimize.UglifyJsPlugin({
+      sourceMap: true,
       compress: {
         warnings: false
-      },
-      sourceMap: false
+      }
     }),
-    new webpack.optimize.OccurenceOrderPlugin()
+    new webpack.LoaderOptionsPlugin({
+      minimize: true
+    })
   ])
 }
