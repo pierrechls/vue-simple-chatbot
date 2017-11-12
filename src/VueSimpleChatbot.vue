@@ -152,17 +152,7 @@
         border-radius:5px;
         box-shadow: 0px 5px 35px 9px #ccc;
 
-        -webkit-transform : scale(0);
-        -moz-transform : scale(0);
-        -o-transform : scale(0);
-        -ms-transform : scale(0);
-        transform : scale(0);
-
-        -webkit-transform-origin : 100% 100%;
-        -moz-transform-origin : 100% 100%;
-        -o-transform-origin : 100% 100%;
-        -ms-transform-origin : 100% 100%;
-        transform-origin : 100% 100%;
+        opacity: 0;
 
         -webkit-transition: all 0.5s;
         -moz-transition: all 0.5s;
@@ -170,19 +160,21 @@
         transition: all 0.5s;
 
         &.open {
-            -webkit-transform : scale(1);
-            -moz-transform : scale(1);
-            -o-transform : scale(1);
-            -ms-transform : scale(1);
-            transform : scale(1);
+            opacity: 1;
+            -webkit-transform : translateY(-40px);
+            -moz-transform : translateY(-40px);
+            -o-transform : translateY(-40px);
+            -ms-transform : translateY(-40px);
+            transform : translateY(-40px);
         }
 
         &.close {
-            -webkit-transform : scale(0);
-            -moz-transform : scale(0);
-            -o-transform : scale(0);
-            -ms-transform : scale(0);
-            transform : scale(0);
+            opacity: 0;
+            -webkit-transform : translateY(0);
+            -moz-transform : translateY(0);
+            -o-transform : translateY(0);
+            -ms-transform : translateY(0);
+            transform : translateY(0);
         }
     }
 
