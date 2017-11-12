@@ -21,8 +21,8 @@
             </div>
           </div>
           <div class="vscb-chat-input">
-            <form>
-              <input v-model="messageInput" type="text" class="vscb-chat-input-element" placeholder="Send a message..."/>
+            <form @submit.prevent="sendMessage">
+              <input v-model="messageInput" type="text" class="vscb-chat-input-element" placeholder="Send a message..." @keyup.enter="sendMessage"/>
               <button type="button" @click="sendMessage()" class="vscb-chat-submit"><i class="material-icons">send</i></button>
             </form>
           </div>
