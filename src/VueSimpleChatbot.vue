@@ -1,14 +1,14 @@
 <template>
   <div class="vscb-container">
     <div id="vscb-container-body">
-        <div class="vscb-chat-circle btn btn-raised">
+        <div :class="viewChatBoxCircle ? 'vscb-chat-circle btn btn-raised open' : 'vscb-chat-circle btn btn-raised close'" @click="showChatBox()">
               <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg>
       	</div>
 
-        <div class="vscb-chat-box">
+        <div :class="viewchatBoxElement ? 'vscb-chat-box open' : 'vscb-chat-box close'">
           <div class="vscb-chat-box-header">
             ChatBot
-            <span class="vscb-chat-box-toggle"><i class="material-icons">close</i></span>
+            <span class="vscb-chat-box-toggle" @click="hideChatBox()"><i class="material-icons">close</i></span>
           </div>
           <div class="vscb-chat-box-body">
             <div class="vscb-chat-box-overlay">
@@ -35,15 +35,13 @@
 
 <script>
 
-    var chatCircleElement    = null
-    var chatBoxElement       = null
-    var chatBoxToggleElement = null
-
     export default {
         components: {},
         props: {},
         data (){
             return {
+              viewChatBoxCircle: true,
+              viewchatBoxElement: false,
               messageInput: '',
               messages: [
                 {
@@ -71,34 +69,15 @@
               }
           },
           showChatBox: function () {
-              chatCircleElement.classList.add('close')
-              chatCircleElement.classList.remove('open')
-              chatBoxElement.classList.add('open')
-              chatBoxElement.classList.remove('close')
+              this.viewChatBoxCircle = false
+              this.viewchatBoxElement = true
           },
           hideChatBox: function () {
-            chatCircleElement.classList.add('open')
-            chatCircleElement.classList.remove('close')
-            chatBoxElement.classList.add('close')
-            chatBoxElement.classList.remove('open')
+              this.viewChatBoxCircle = true
+              this.viewchatBoxElement = false
           },
-          initEvent: function () {
-            chatCircleElement.addEventListener('click', () => {
-              this.showChatBox()
-            }, false)
-
-            chatBoxToggleElement.addEventListener('click', () => {
-              this.hideChatBox()
-            }, false)
-          }
         },
         mounted () {
-
-          chatCircleElement    = document.querySelector(".vscb-chat-circle")
-          chatBoxElement       = document.querySelector(".vscb-chat-box")
-          chatBoxToggleElement = document.querySelector(".vscb-chat-box-toggle")
-
-          this.initEvent()
         }
     }
 
