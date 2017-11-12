@@ -2,13 +2,15 @@
   <div class="vscb-container">
     <div class="vscb-container-body">
         <div :class="viewChatBoxCircle ? 'vscb-chat-circle open' : 'vscb-chat-circle close'" @click="showChatBox()">
-              <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg>
-      	</div>
+              <message-svg color="#FFF"></message-svg>
+        </div>
 
         <div :class="viewchatBoxElement ? 'vscb-chat-box open' : 'vscb-chat-box close'">
           <div class="vscb-chat-box-header">
             ChatBot
-            <span class="vscb-chat-box-toggle" @click="hideChatBox()"><i class="material-icons">close</i></span>
+            <span class="vscb-chat-box-toggle" @click="hideChatBox()">
+                <cross-svg color="#FFF"></cross-svg>
+            </span>
           </div>
           <div class="vscb-chat-box-body">
             <div class="vscb-chat-logs">
@@ -28,7 +30,9 @@
           <div class="vscb-chat-input">
             <form @submit.prevent="sendMessage">
               <input v-model="messageInput" type="text" class="vscb-chat-input-element" placeholder="Send a message..." @keyup.enter="sendMessage"/>
-              <button type="button" @click="sendMessage()" class="vscb-chat-submit"><i class="material-icons">send</i></button>
+              <button type="button" @click="sendMessage()" class="vscb-chat-submit">
+                  <send-svg color="#A2A3A4"></send-svg>
+              </button>
             </form>
           </div>
         </div>
@@ -38,8 +42,16 @@
 
 <script>
 
+    import CrossSvg from 'components/Svg/CrossSvgComponent.vue'
+    import MessageSvg from 'components/Svg/MessageSvgComponent.vue'
+    import SendSvg from 'components/Svg/SendSvgComponent.vue'
+
     export default {
-        components: {},
+        components: {
+          'send-svg': SendSvg,
+          'cross-svg': CrossSvg,
+          'message-svg': MessageSvg
+        },
         props: {},
         data (){
             return {
