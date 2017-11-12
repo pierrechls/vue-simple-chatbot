@@ -16,6 +16,11 @@
                 <span class="vscb-msg-avatar">
                   <img :src="message.avatar">
                 </span>
+                <!-- <div class="typing-indicator">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div> -->
                 <div class="vscb-cm-msg-text">{{ message.text }}</div>
               </div>
             </div>
@@ -235,6 +240,65 @@
                     .vscb-chat-msg {
 
                         clear:both;
+
+                        .typing-indicator {
+                            background-color: #E6E7ED;
+                            will-change: transform;
+                            width: auto;
+                            border-radius: 50px;
+                            padding: 10px;
+                            display: table;
+                            float: right;
+                            margin: 0 20px 0 auto;
+                            position: relative;
+                            animation: 2s bulge infinite ease-out;
+
+                            &::before, &::after {
+                                content: '';
+                                position: absolute;
+                                bottom: -2px;
+                                right: -2px;
+                                height: 10px;
+                                width: 10px;
+                                border-radius: 50%;
+                                background-color: #E6E7ED;
+                            }
+
+                            &::after {
+                                height: 10px;
+                                width: 10px;
+                                right: -10px;
+                                bottom: -10px;
+                            }
+
+                            span {
+                                height: 10px;
+                                width: 10px;
+                                float: left;
+                                margin: 0 1px;
+                                background-color: #9E9EA1;
+                                display: block;
+                                border-radius: 50%;
+                                opacity: 0.4;
+                                @for $i from 1 through 3 {
+                                  &:nth-of-type(#{$i}) {
+                                    animation: 1s blink infinite ($i * .3333s);
+                                  }
+                                }
+                            }
+                        }
+
+                        @keyframes blink {
+                          50% {
+                            opacity: 1;
+                          }
+                        }
+
+                        @keyframes bulge {
+                          50% {
+                            transform: scale(1.05);
+                          }
+                        }
 
                         &.user > .vscb-msg-avatar img, &.self > .vscb-msg-avatar img {
                           width:45px;
