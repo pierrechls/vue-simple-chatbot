@@ -1,4 +1,4 @@
-#   vue-simple-chatbot
+# vue-simple-chatbot (:construction: WIP)
 
 > A simple chatbot VueJS component to create conversation chats
 
